@@ -8,12 +8,9 @@
             MenuActionService actionService = new MenuActionService();
             PatientService patientService = new PatientService();
             
+            actionService = Initialize(actionService);
            
-                
-                actionService = Initialize(actionService);
-                
-
-                Console.WriteLine("Welcome to the RehaPatient app!");
+            Console.WriteLine("Welcome to the RehaPatient app!");
            
             while (true)
             {
@@ -56,9 +53,8 @@
                     actionService.AddNewAction(2, "Remove patient from list", "Main");
                     actionService.AddNewAction(3, "List of currents patients", "Main");
 
-                    actionService.AddNewAction(1, "Stationary rehabilitation", "AddNewPatientMenu");
+                    actionService.AddNewAction(1, "Stationary rehabilitation", "AddNewPatientMenu"); //menu wyboru podczas dodawania pacjenta ale jak i wywoływania listy oczekujących
                     actionService.AddNewAction(2, "Home rehabilitation", "AddNewPatientMenu");
-
 
                     return actionService;
                 }

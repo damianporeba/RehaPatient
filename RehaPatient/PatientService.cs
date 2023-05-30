@@ -15,7 +15,6 @@ namespace RehaPatient
             Patients = new List<Patient>();
         }
 
-
         public ConsoleKeyInfo AddNewPatientView(MenuActionService actionService)
         {
             Console.WriteLine("\nPlease, pick a kind of rehabilitation:");
@@ -57,7 +56,6 @@ namespace RehaPatient
 
             Patients.Add(patient);
             return patientId;
-
         }
 
         public string RemovePatientView()
@@ -80,9 +78,7 @@ namespace RehaPatient
                     break;
                 }
             }
-
-            Patients.Remove(patientToRemove);
-            
+            Patients.Remove(patientToRemove);       
         }
 
         public ConsoleKeyInfo ListOfPatientView(MenuActionService actionService)
@@ -97,7 +93,6 @@ namespace RehaPatient
             var operation = Console.ReadKey();
 
             return operation;
-
         }
 
         public int ListOfPatient(char patientList)
@@ -114,10 +109,8 @@ namespace RehaPatient
                 {
                     patientTypeList = patient;
                     
-                    Console.WriteLine($"\nPESEL: {patient.Pesel}\nImię: {patient.Name}\nNazwisko: {patient.Surname}\nICD-10: {patient.Icd}.");
-                    
+                    Console.WriteLine($"\nPESEL: {patient.Pesel}\nImię: {patient.Name}\nNazwisko: {patient.Surname}\nICD-10: {patient.Icd}.");  
                 }
-
             }
             return patientList;
         }

@@ -14,8 +14,6 @@ namespace RehaPatient
             menuActions = new List<MenuAction>(); //robienie metody po to zeby ta lista nie była zerem, poprostu okresla sie ze ta lista to ta lista
         }
 
-
-
         public void AddNewAction(int id, string name, string menuName)
         {
             MenuAction menuAction = new MenuAction() {Id = id, Name = name, MenuName = menuName}; // definicja zmiennych w obiekcie akcji

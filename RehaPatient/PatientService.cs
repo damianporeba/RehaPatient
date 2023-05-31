@@ -18,7 +18,7 @@ namespace RehaPatient
         public ConsoleKeyInfo AddNewPatientView(MenuActionService actionService)
         {
             Console.WriteLine("\nPlease, pick a kind of rehabilitation:");
-            var addNewPatientMenu = actionService.GetMenuActionsByMenuName("AddNewPatientMenu");
+            var addNewPatientMenu = actionService.GetMenuActionsByMenuName("KindOfReferral");
             for (int i = 0; i < addNewPatientMenu.Count; i++)
             {
                 Console.WriteLine("\n" + addNewPatientMenu[i].Id + "." + addNewPatientMenu[i].Name + ".");
@@ -84,7 +84,7 @@ namespace RehaPatient
         public ConsoleKeyInfo ListOfPatientView(MenuActionService actionService)
         {
             Console.WriteLine("\nPlease, pick a type of referral:");
-            var referralType = actionService.GetMenuActionsByMenuName("AddNewPatientMenu");
+            var referralType = actionService.GetMenuActionsByMenuName("KindOfReferral");
             
             for (int i = 0; i < referralType.Count; i++)
             {

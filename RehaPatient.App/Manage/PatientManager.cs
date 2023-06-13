@@ -54,7 +54,7 @@ namespace RehaPatient.App.Manage
             return patient.Id; //zwracamy id dla kontroli
         }
 
-        public int RemovePatient()
+        public int RemovePatient() //NAPRAWIĆ USUWANIE PACJENTA Z LISTY
         {
             Console.WriteLine("Please, enter a patient's PESEL number who you want to remove from list");
             string pesel = Console.ReadLine();

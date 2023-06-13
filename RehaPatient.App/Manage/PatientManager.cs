@@ -1,4 +1,5 @@
-﻿using RehaPatient.App.Abstract;
+﻿using Microsoft.VisualBasic.FileIO;
+using RehaPatient.App.Abstract;
 using RehaPatient.App.Common;
 using RehaPatient.App.Concrete;
 using RehaPatient.Domain.Entity;
@@ -19,6 +20,7 @@ namespace RehaPatient.App.Manage
         public PatientManager(MenuActionService actionService)
         {
             _patientService = new PatientService();
+
             _actionService = actionService;
         }
 
@@ -50,12 +52,30 @@ namespace RehaPatient.App.Manage
             Patient patient = new Patient(refferalType, name, surname, pesel, icd);
             _patientService.AddPatient(patient);
             return patient.Id; //zwracamy id dla kontroli
+        }
 
+        public int RemovePatient()
+        {
+            Console.WriteLine("Please, enter a patient's PESEL number who you want to remove from list");
+            string pesel = Console.ReadLine();
+            
+            var patient = _patientService.GetPatientByPesel(pesel);
+            
+            _patientService.RemovePatient(patient);
 
+            return patient.Id;
+           
+        }
 
+        public void PatientsList()
+        {
+            var showList = _patientService.GetAllPatients();
+            foreach ( var patient in _patientService.Patients)
+            {
+                Console.WriteLine(patient.Name + patient.Surname + patient.Pesel + patient.Icd);
+            }
 
-
-
+           
         }
     }
 }

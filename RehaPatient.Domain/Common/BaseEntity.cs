@@ -9,5 +9,6 @@ namespace RehaPatient.Domain.Common
     public class BaseEntity
     {
         public int Id { get; set; }
+        public string Pesel { get; set; }
     }
 }

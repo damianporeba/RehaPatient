@@ -35,20 +35,17 @@ namespace RehaPatient
 
                         break;
 
-                    //case '2':
+                    case '2':
+                        var removePatient = patientManager.RemovePatient();
+                        break;
 
-                    //    var patientRemove = patientService.RemovePatientView();
-                    //    patientService.PatientRemove(patientRemove);
-                    //    break;
+                    case '3':
+                        patientManager.PatientsList();
+                        break;
 
-                    //case '3':
-                    //    var keyInfoPatient = patientService.ListOfPatientView(actionService);
-                    //    var patientList = patientService.ListOfPatient(keyInfoPatient.KeyChar);
-                    //    break;
-
-                    //default:
-                    //    Console.WriteLine("You picked a wrong action, please choose a correct one");
-                    //    break;
+                        //default:
+                        //    Console.WriteLine("You picked a wrong action, please choose a correct one");
+                        //    break;
                 }
             }
            

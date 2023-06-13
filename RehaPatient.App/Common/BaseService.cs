@@ -1,5 +1,6 @@
 ﻿using RehaPatient.App.Abstract;
 using RehaPatient.Domain.Common;
+using RehaPatient.Domain.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,12 @@ namespace RehaPatient.App.Common
         public void RemovePatient(T patient)
         {
             Patients.Remove(patient);
+        }
+
+        public T GetPatientByPesel(string peselToRemove)
+        {
+            var patientToRemove = Patients.FirstOrDefault(pesel => pesel.Pesel== peselToRemove);
+            return patientToRemove;
         }
     }
 }

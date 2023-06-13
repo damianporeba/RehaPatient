@@ -23,5 +23,15 @@ namespace RehaPatient.Domain.Entity
             Pesel = pesel;
             Icd = icd;
         }
+
+        public Patient(string pesel)
+        {
+            Pesel = pesel;
+        }
+
+        public Patient()
+        {
+            
+        }
     }
 }

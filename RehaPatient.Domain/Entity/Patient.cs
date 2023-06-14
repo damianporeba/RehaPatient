@@ -12,7 +12,7 @@ namespace RehaPatient.Domain.Entity
         public int RefferalId {get; set;} //opisuje skierowanie, 1=stacjonarna, 2=domowa
         public string Name { get; set;}
         public string Surname { get; set;}
-        public string Pesel { get; set;}
+       
         public string Icd { get; set;}
 
         public Patient(int refferalId, string name, string surname, string pesel, string icd)
@@ -24,10 +24,7 @@ namespace RehaPatient.Domain.Entity
             Icd = icd;
         }
 
-        public Patient(string pesel)
-        {
-            Pesel = pesel;
-        }
+        
 
         public Patient()
         {

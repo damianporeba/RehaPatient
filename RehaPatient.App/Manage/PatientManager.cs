@@ -2,6 +2,7 @@
 using RehaPatient.App.Abstract;
 using RehaPatient.App.Common;
 using RehaPatient.App.Concrete;
+using RehaPatient.Domain.Common;
 using RehaPatient.Domain.Entity;
 using RehaPatient.Doman.Entity;
 using System;
@@ -46,36 +47,52 @@ namespace RehaPatient.App.Manage
             var surname = Console.ReadLine();
             Console.WriteLine("Please, enter a Patient's PESEL");
             var pesel = Console.ReadLine();
+
+            while (pesel.Length != 11)
+            {
+                Console.WriteLine("Invalid PESEL, please enter a correct one:...");
+                pesel = Console.ReadLine();
+            }
+
             Console.WriteLine("Please, enter a Patient's ICD10 number");
             var icd = Console.ReadLine();
 
+            
+
             Patient patient = new Patient(refferalType, name, surname, pesel, icd);
+            
             _patientService.AddPatient(patient);
             return patient.Id; //zwracamy id dla kontroli
         }
 
-        public int RemovePatient() //NAPRAWIĆ USUWANIE PACJENTA Z LISTY
+        public void RemovePatient() //wpisujemy pesel pacjenta do skasowania z listy, on jest przekazywany do metody która go wyszukjuje z listy, potem ta zmienna przyjmuje jego wartość i wywoływana jest metoda kasująca go z listy
         {
             Console.WriteLine("Please, enter a patient's PESEL number who you want to remove from list");
-            string pesel = Console.ReadLine();
-            
-            var patient = _patientService.GetPatientByPesel(pesel);
-            
-            _patientService.RemovePatient(patient);
+            string peselToRemove = Console.ReadLine();
 
-            return patient.Id;
-           
+            var patient = _patientService.GetPatientByPesel(peselToRemove);
+            _patientService.RemovePatient(patient);
+          
         }
 
         public void PatientsList()
         {
-            var showList = _patientService.GetAllPatients();
-            foreach ( var patient in _patientService.Patients)
+            //var showList = _patientService.GetAllPatients(); funkcja w sumie nie działa, to co na dole robi to co chce
+            foreach (var patient in _patientService.Patients)
             {
-                Console.WriteLine(patient.Name + patient.Surname + patient.Pesel + patient.Icd);
+                if (patient.RefferalId == 1)
+                {
+                    Console.WriteLine($"\n\rImię: {patient.Name} \n\rNazwisko: {patient.Surname} \n\rPESEL: {patient.Pesel} \n\rICD10: {patient.Icd}\n\rrehabilitacja stacjonarna");
+                }
+                if (patient.RefferalId == 2)
+                {
+                    Console.WriteLine($"\n\rImię: {patient.Name} \n\rNazwisko: {patient.Surname} \n\rPESEL: {patient.Pesel} \n\rICD10: {patient.Icd} \n\rrehabilitacja domowa ");
+
+                }
+
             }
 
-           
+
         }
     }
 }

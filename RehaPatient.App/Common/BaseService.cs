@@ -45,10 +45,11 @@ namespace RehaPatient.App.Common
             Patients.Remove(patient);
         }
 
-        public T GetPatientByPesel(string peselToRemove)
+        public T GetPatientByPesel(string pesel)
         {
-            var patientToRemove = Patients.FirstOrDefault(pesel => pesel.Pesel== peselToRemove);
-            return patientToRemove;
+            var entity = Patients.FirstOrDefault(p=>p.Pesel == pesel);
+            return entity;
+
         }
     }
 }

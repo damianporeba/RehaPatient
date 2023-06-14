@@ -36,16 +36,16 @@ namespace RehaPatient
                         break;
 
                     case '2':
-                        var removePatient = patientManager.RemovePatient();
+                        patientManager.RemovePatient();
                         break;
 
                     case '3':
                         patientManager.PatientsList();
                         break;
 
-                        //default:
-                        //    Console.WriteLine("You picked a wrong action, please choose a correct one");
-                        //    break;
+                    default:
+                        Console.WriteLine("You picked a wrong action, please choose a correct one");
+                        break;
                 }
             }
            

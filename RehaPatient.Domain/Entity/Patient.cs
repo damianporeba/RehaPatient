@@ -15,6 +15,9 @@ namespace RehaPatient.Domain.Entity
        
         public string Icd { get; set;}
 
+        public string Adress { get; set;}
+        public string Age { get; set;}
+
         public Patient(int refferalId, string name, string surname, string pesel, string icd)
         {
             RefferalId = refferalId;
@@ -24,11 +27,11 @@ namespace RehaPatient.Domain.Entity
             Icd = icd;
         }
 
-        
-
         public Patient()
         {
             
         }
+
+       
     }
 }

@@ -31,8 +31,7 @@ namespace RehaPatient
                 switch (operation.KeyChar)  
                 {
                     case '1':
-                        var newId = patientManager.AddNewPatient();
-
+                        patientManager.AddNewPatient();
                         break;
 
                     case '2':

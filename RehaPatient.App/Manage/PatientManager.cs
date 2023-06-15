@@ -8,6 +8,7 @@ using RehaPatient.Doman.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Loader;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,23 +22,19 @@ namespace RehaPatient.App.Manage
         public PatientManager(MenuActionService actionService)
         {
             _patientService = new PatientService();
-
             _actionService = actionService;
         }
 
-
-
-
-        public int AddNewPatient()
+        public void AddNewPatient()
         {         
             var addNewPatientMenu = _actionService.GetMenuActionsByMenuName("KindOfReferral");
-            Console.WriteLine("\nPlease, pick a kind of rehabilitation:");
+            Console.WriteLine("\n\rPlease, pick a kind of rehabilitation:");
             for (int i = 0; i < addNewPatientMenu.Count; i++)
             {
                 Console.WriteLine("\n" + addNewPatientMenu[i].Id + "." + addNewPatientMenu[i].Name + ".");
             }
             var operation = Console.ReadKey();
-
+           
             int refferalType;
             Int32.TryParse(operation.KeyChar.ToString(), out refferalType);
 
@@ -47,27 +44,29 @@ namespace RehaPatient.App.Manage
             var surname = Console.ReadLine();
             Console.WriteLine("Please, enter a Patient's PESEL");
             var pesel = Console.ReadLine();
-
+            
             while (pesel.Length != 11)
             {
                 Console.WriteLine("Invalid PESEL, please enter a correct one:...");
                 pesel = Console.ReadLine();
             }
 
+            var age = _patientService.GetPatientByPesel(pesel);
+            string dateBirth = Convert.ToString(age);
             Console.WriteLine("Please, enter a Patient's ICD10 number");
             var icd = Console.ReadLine();
+            Console.WriteLine("Please, enter a Patient's home adress:");
+            string adress = Console.ReadLine();
 
+            Patient patient = new Patient(refferalType, name, surname, pesel, icd) {Adress = adress, Age = dateBirth};
             
-
-            Patient patient = new Patient(refferalType, name, surname, pesel, icd);
             
             _patientService.AddPatient(patient);
-            return patient.Id; //zwracamy id dla kontroli
         }
 
         public void RemovePatient() //wpisujemy pesel pacjenta do skasowania z listy, on jest przekazywany do metody która go wyszukjuje z listy, potem ta zmienna przyjmuje jego wartość i wywoływana jest metoda kasująca go z listy
         {
-            Console.WriteLine("Please, enter a patient's PESEL number who you want to remove from list");
+            Console.WriteLine("\n\rPlease, enter a patient's PESEL number who you want to remove from list");
             string peselToRemove = Console.ReadLine();
 
             var patient = _patientService.GetPatientByPesel(peselToRemove);
@@ -82,17 +81,14 @@ namespace RehaPatient.App.Manage
             {
                 if (patient.RefferalId == 1)
                 {
-                    Console.WriteLine($"\n\rImię: {patient.Name} \n\rNazwisko: {patient.Surname} \n\rPESEL: {patient.Pesel} \n\rICD10: {patient.Icd}\n\rrehabilitacja stacjonarna");
+                    Console.WriteLine($"\n\rImię: {patient.Name} \n\rNazwisko: {patient.Surname} \n\rPESEL: {patient.Pesel} \n\rWiek: {patient.Age} \n\rICD10: {patient.Icd}\n\rrehabilitacja stacjonarna");
                 }
                 if (patient.RefferalId == 2)
                 {
-                    Console.WriteLine($"\n\rImię: {patient.Name} \n\rNazwisko: {patient.Surname} \n\rPESEL: {patient.Pesel} \n\rICD10: {patient.Icd} \n\rrehabilitacja domowa ");
-
+                    Console.WriteLine($"\n\rImię: {patient.Name} \n\rNazwisko: {patient.Surname} \n\rPESEL: {patient.Pesel} \n\rWiek: {patient.Adress} \n\rICD10: {patient.Icd} \n\rrehabilitacja domowa \n\rAdres wizyty:" +
+                        $" {patient.Adress}");
                 }
-
             }
-
-
         }
     }
 }

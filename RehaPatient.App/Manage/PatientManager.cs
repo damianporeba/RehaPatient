@@ -25,7 +25,6 @@ namespace RehaPatient.App.Manage
             _patientService = new PatientService();
             _actionService = actionService;
         }
-
         public void AddNewPatient()
         {         
             var addNewPatientMenu = _actionService.GetMenuActionsByMenuName("KindOfReferral");
@@ -53,8 +52,6 @@ namespace RehaPatient.App.Manage
             }
 
             var age = _patientService.GetAgeByPesel(pesel);
-
-            //age = DateTime.Now.ToString("MM/dd/yyyy");
             
             Console.WriteLine("Please, enter a Patient's ICD10 number");
             var icd = Console.ReadLine();
@@ -63,10 +60,8 @@ namespace RehaPatient.App.Manage
 
             Patient patient = new Patient(refferalType, name, surname, pesel, icd) {Adress = adress, Age = age };
             
-            //age=age.ToString("d");
             _patientService.AddPatient(patient);
         }
-
         public void RemovePatient() //wpisujemy pesel pacjenta do skasowania z listy, on jest przekazywany do metody która go wyszukjuje z listy, potem ta zmienna przyjmuje jego wartość i wywoływana jest metoda kasująca go z listy
         {
             Console.WriteLine("\n\rPlease, enter a patient's PESEL number who you want to remove from list");
@@ -74,9 +69,7 @@ namespace RehaPatient.App.Manage
 
             var patient = _patientService.GetPatientByPesel(peselToRemove);
             _patientService.RemovePatient(patient);
-          
         }
-
         public void PatientsList()
         {
             //var showList = _patientService.GetAllPatients(); funkcja w sumie nie działa, to co na dole robi to co chce

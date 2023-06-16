@@ -12,11 +12,8 @@ namespace RehaPatient.App.Concrete
 {
     public class PatientService : BaseService<Patient>
     {
-
         public string GetAgeByPesel(string pesel)
         {
-
-
             int year = Convert.ToInt32(pesel.Substring(0, 2));
             int month = Convert.ToInt32(pesel.Substring(2, 2));
             int day = Convert.ToInt32(pesel.Substring(4, 2));
@@ -36,19 +33,14 @@ namespace RehaPatient.App.Concrete
                 year = year + 2200;
                 month = month - 60;
             }
-
             else
             {
                 year = year + 1900;
                 month = month;
             }
-
-
             DateTime dateTime = new DateTime(year, month, day); 
             string data = dateTime.ToString("d");
             return data;
-
         }
-
     }
 }

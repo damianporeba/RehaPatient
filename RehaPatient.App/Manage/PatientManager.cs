@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic.FileIO;
+﻿using Microsoft.VisualBasic;
+using Microsoft.VisualBasic.FileIO;
 using RehaPatient.App.Abstract;
 using RehaPatient.App.Common;
 using RehaPatient.App.Concrete;
@@ -51,16 +52,18 @@ namespace RehaPatient.App.Manage
                 pesel = Console.ReadLine();
             }
 
-            var age = _patientService.GetPatientByPesel(pesel);
-            string dateBirth = Convert.ToString(age);
+            var age = _patientService.GetAgeByPesel(pesel);
+
+            //age = DateTime.Now.ToString("MM/dd/yyyy");
+            
             Console.WriteLine("Please, enter a Patient's ICD10 number");
             var icd = Console.ReadLine();
             Console.WriteLine("Please, enter a Patient's home adress:");
             string adress = Console.ReadLine();
 
-            Patient patient = new Patient(refferalType, name, surname, pesel, icd) {Adress = adress, Age = dateBirth};
+            Patient patient = new Patient(refferalType, name, surname, pesel, icd) {Adress = adress, Age = age };
             
-            
+            //age=age.ToString("d");
             _patientService.AddPatient(patient);
         }
 
@@ -81,11 +84,11 @@ namespace RehaPatient.App.Manage
             {
                 if (patient.RefferalId == 1)
                 {
-                    Console.WriteLine($"\n\rImię: {patient.Name} \n\rNazwisko: {patient.Surname} \n\rPESEL: {patient.Pesel} \n\rWiek: {patient.Age} \n\rICD10: {patient.Icd}\n\rrehabilitacja stacjonarna");
+                    Console.WriteLine($"\n\rImię: {patient.Name} \n\rNazwisko: {patient.Surname} \n\rPESEL: {patient.Pesel} \n\rData urodzenia: {patient.Age} \n\rICD10: {patient.Icd}\n\rrehabilitacja stacjonarna");
                 }
                 if (patient.RefferalId == 2)
                 {
-                    Console.WriteLine($"\n\rImię: {patient.Name} \n\rNazwisko: {patient.Surname} \n\rPESEL: {patient.Pesel} \n\rWiek: {patient.Adress} \n\rICD10: {patient.Icd} \n\rrehabilitacja domowa \n\rAdres wizyty:" +
+                    Console.WriteLine($"\n\rImię: {patient.Name} \n\rNazwisko: {patient.Surname} \n\rPESEL: {patient.Pesel} \n\rData urodzenia: {patient.Age} \n\rICD10: {patient.Icd} \n\rrehabilitacja domowa \n\rAdres wizyty:" +
                         $" {patient.Adress}");
                 }
             }

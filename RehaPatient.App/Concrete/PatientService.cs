@@ -44,9 +44,9 @@ namespace RehaPatient.App.Concrete
             }
 
 
-            DateTime dateTime = new DateTime(year, month, day);
-            string dateTime1 = dateTime.ToString();
-            return dateTime1;
+            DateTime dateTime = new DateTime(year, month, day); 
+            string data = dateTime.ToString("d");
+            return data;
 
         }
 

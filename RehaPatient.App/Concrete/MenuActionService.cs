@@ -35,6 +35,7 @@ namespace RehaPatient.App.Concrete
             AddPatient(new MenuAction(1, "Add new patient", "Main"));
             AddPatient(new MenuAction(2, "Remove patient from list", "Main"));
             AddPatient(new MenuAction(3, "List of currents patients", "Main"));
+            AddPatient(new MenuAction(4, "List of patients by rehabilitation type", "Main"));
 
             AddPatient(new MenuAction(1, "Stationary rehabilitation", "KindOfReferral")); 
             AddPatient(new MenuAction(2, "Home rehabilitation", "KindOfReferral"));

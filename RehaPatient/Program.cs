@@ -42,6 +42,10 @@ namespace RehaPatient
                         patientManager.PatientsList();
                         break;
 
+                    case '4':
+                        patientManager.PatientsListByRehabType();
+                        break;
+
                     default:
                         Console.WriteLine("You picked a wrong action, please choose a correct one");
                         break;

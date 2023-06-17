@@ -79,12 +79,50 @@ namespace RehaPatient.App.Manage
             {
                 if (patient.RefferalId == 1)
                 {
-                    Console.WriteLine($"\n\rImię: {patient.Name} \n\rNazwisko: {patient.Surname} \n\rPESEL: {patient.Pesel} \n\rData urodzenia: {patient.Age}\n\rWiek {patient.YearsNow}\n\rICD10: {patient.Icd}\n\rrehabilitacja stacjonarna");
+                    Console.WriteLine($"\n\rImię: {patient.Name} \n\rNazwisko: {patient.Surname} \n\rPESEL: {patient.Pesel} \n\rData urodzenia: {patient.Age}\n\rWiek {patient.YearsNow}lat\n\rICD10: {patient.Icd}\n\rrehabilitacja stacjonarna");
                 }
                 if (patient.RefferalId == 2)
                 {
-                    Console.WriteLine($"\n\rImię: {patient.Name} \n\rNazwisko: {patient.Surname} \n\rPESEL: {patient.Pesel} \n\rData urodzenia: {patient.Age}\n\rWiek {patient.YearsNow}\n\rICD10: {patient.Icd} \n\rrehabilitacja domowa \n\rAdres wizyty:" +
+                    Console.WriteLine($"\n\rImię: {patient.Name} \n\rNazwisko: {patient.Surname} \n\rPESEL: {patient.Pesel} \n\rData urodzenia: {patient.Age}\n\rWiek {patient.YearsNow}lat\n\rICD10: {patient.Icd} \n\rrehabilitacja domowa \n\rAdres wizyty:" +
                         $" {patient.Adress}");
+                }
+            }
+        }
+
+        public void PatientsListByRehabType()
+        {
+            var addNewPatientMenu = _actionService.GetMenuActionsByMenuName("KindOfReferral");
+            Console.WriteLine("\n\rPlease, pick a kind of rehabilitation:");
+            for (int i = 0; i < addNewPatientMenu.Count; i++)
+            {
+                Console.WriteLine("\n" + addNewPatientMenu[i].Id + "." + addNewPatientMenu[i].Name + ".");
+            }
+            var operation = Console.ReadKey();
+
+            //int refferalType;
+            //Int32.TryParse(operation.KeyChar.ToString(), out refferalType);
+
+            if (operation.KeyChar == '1')
+            {
+                foreach (var patient in _patientService.Patients)
+                {
+                    if (patient.RefferalId == 1)
+                    {
+                        Console.WriteLine($"\n\rImię: {patient.Name} \n\rNazwisko: {patient.Surname} \n\rPESEL: {patient.Pesel} \n\rData urodzenia: {patient.Age}\n\rWiek {patient.YearsNow}lat\n\rICD10: {patient.Icd} \n\rrehabilitacja stacjonarna");
+                    }
+                }
+            }
+
+            else if (operation.KeyChar == '2')
+            {
+                foreach (var patient in _patientService.Patients)
+                {
+                    if (patient.RefferalId == 2)
+                    {
+                        Console.WriteLine($"\n\rImię: {patient.Name} \n\rNazwisko: {patient.Surname} \n\rPESEL: {patient.Pesel} \n\rData urodzenia: {patient.Age}\n\rWiek {patient.YearsNow}lat\n\rICD10: {patient.Icd} \n\rrehabilitacja domowa \n\rAdres wizyty:" +
+                                            $" {patient.Adress}");
+                    }
+                    
                 }
             }
         }

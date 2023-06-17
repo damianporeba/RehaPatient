@@ -57,9 +57,11 @@ namespace RehaPatient.App.Manage
             var icd = Console.ReadLine();
             Console.WriteLine("Please, enter a Patient's home adress:");
             string adress = Console.ReadLine();
+            var patientYears = _patientService.PatientAge(age);
 
-            Patient patient = new Patient(refferalType, name, surname, pesel, icd) {Adress = adress, Age = age };
-            
+            Patient patient = new Patient(refferalType, name, surname, pesel, icd) {Adress = adress, Age = age, YearsNow = patientYears };
+
+
             _patientService.AddPatient(patient);
         }
         public void RemovePatient() //wpisujemy pesel pacjenta do skasowania z listy, on jest przekazywany do metody która go wyszukjuje z listy, potem ta zmienna przyjmuje jego wartość i wywoływana jest metoda kasująca go z listy
@@ -77,11 +79,11 @@ namespace RehaPatient.App.Manage
             {
                 if (patient.RefferalId == 1)
                 {
-                    Console.WriteLine($"\n\rImię: {patient.Name} \n\rNazwisko: {patient.Surname} \n\rPESEL: {patient.Pesel} \n\rData urodzenia: {patient.Age} \n\rICD10: {patient.Icd}\n\rrehabilitacja stacjonarna");
+                    Console.WriteLine($"\n\rImię: {patient.Name} \n\rNazwisko: {patient.Surname} \n\rPESEL: {patient.Pesel} \n\rData urodzenia: {patient.Age}\n\rWiek {patient.YearsNow}\n\rICD10: {patient.Icd}\n\rrehabilitacja stacjonarna");
                 }
                 if (patient.RefferalId == 2)
                 {
-                    Console.WriteLine($"\n\rImię: {patient.Name} \n\rNazwisko: {patient.Surname} \n\rPESEL: {patient.Pesel} \n\rData urodzenia: {patient.Age} \n\rICD10: {patient.Icd} \n\rrehabilitacja domowa \n\rAdres wizyty:" +
+                    Console.WriteLine($"\n\rImię: {patient.Name} \n\rNazwisko: {patient.Surname} \n\rPESEL: {patient.Pesel} \n\rData urodzenia: {patient.Age}\n\rWiek {patient.YearsNow}\n\rICD10: {patient.Icd} \n\rrehabilitacja domowa \n\rAdres wizyty:" +
                         $" {patient.Adress}");
                 }
             }

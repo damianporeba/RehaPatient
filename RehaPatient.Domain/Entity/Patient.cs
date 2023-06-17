@@ -18,6 +18,8 @@ namespace RehaPatient.Domain.Entity
         public string Adress { get; set;}
         public string Age { get; set;}
 
+        public int YearsNow { get; set;}
+
         public Patient(int refferalId, string name, string surname, string pesel, string icd)
         {
             RefferalId = refferalId;

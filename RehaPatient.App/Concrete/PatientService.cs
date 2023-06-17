@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic;
 using RehaPatient.App.Common;
+using RehaPatient.App.Manage;
 using RehaPatient.Domain.Entity;
 using System;
 using System.Collections.Generic;
@@ -41,6 +42,19 @@ namespace RehaPatient.App.Concrete
             DateTime dateTime = new DateTime(year, month, day); 
             string data = dateTime.ToString("d");
             return data;
+        }
+
+        public int PatientAge(string age)
+        {
+            DateTime date = DateTime.Now;
+            string years = date.ToString("yyyy");
+            int yearsNumber = Convert.ToInt32(years);
+            int ageNumber = Convert.ToInt32(age.Substring(6,4));
+
+            int yearsNow = yearsNumber - ageNumber;
+            return yearsNow;
+            
+
         }
     }
 }

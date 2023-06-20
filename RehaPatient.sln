@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RehaPatient", "RehaPatient\
 		{D95E1D9F-095E-4CE4-9299-E770C7C43423} = {D95E1D9F-095E-4CE4-9299-E770C7C43423}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RehaPatient.App", "RehaPatient.App\RehaPatient.App.csproj", "{D95E1D9F-095E-4CE4-9299-E770C7C43423}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RehaPatient.App", "RehaPatient.App\RehaPatient.App.csproj", "{D95E1D9F-095E-4CE4-9299-E770C7C43423}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RehaPatient.Domain", "RehaPatient.Domain\RehaPatient.Domain.csproj", "{24C143DD-A224-4E4B-9A0B-3387357254BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RehaPatient.Domain", "RehaPatient.Domain\RehaPatient.Domain.csproj", "{24C143DD-A224-4E4B-9A0B-3387357254BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RehaPatient.Tests", "RehaPatient.Tests\RehaPatient.Tests.csproj", "{9C27D03C-D418-4376-97AB-4045A32D7CDF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,10 @@ Global
 		{24C143DD-A224-4E4B-9A0B-3387357254BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24C143DD-A224-4E4B-9A0B-3387357254BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24C143DD-A224-4E4B-9A0B-3387357254BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C27D03C-D418-4376-97AB-4045A32D7CDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C27D03C-D418-4376-97AB-4045A32D7CDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C27D03C-D418-4376-97AB-4045A32D7CDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C27D03C-D418-4376-97AB-4045A32D7CDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

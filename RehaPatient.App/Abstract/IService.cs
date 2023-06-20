@@ -14,6 +14,7 @@ namespace RehaPatient.App.Abstract
         int AddPatient (T patient);
         int UpdatePatient (T patient);
         void RemovePatient (T patient);
+        T GetPatientByPesel (string pesel);
 
     }
 }

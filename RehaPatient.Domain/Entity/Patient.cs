@@ -29,10 +29,7 @@ namespace RehaPatient.Domain.Entity
             Icd = icd;
         }
 
-        public Patient()
-        {
-            
-        }
+        
 
        
     }

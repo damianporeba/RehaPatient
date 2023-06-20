@@ -74,7 +74,6 @@ namespace RehaPatient.App.Manage
         }
         public void PatientsList()
         {
-            //var showList = _patientService.GetAllPatients(); funkcja w sumie nie działa, to co na dole robi to co chce
             foreach (var patient in _patientService.Patients)
             {
                 if (patient.RefferalId == 1)
@@ -125,6 +124,12 @@ namespace RehaPatient.App.Manage
                     
                 }
             }
+        }
+
+        public Patient GetPatientByPesel(string pesel)
+        {
+            var patient = _patientService.GetPatientByPesel(pesel); 
+            return patient;
         }
     }
 }

@@ -24,7 +24,7 @@ namespace RehaPatient.App.Common
             return Patients;
         }
 
-        public int AddPatient(T patient)
+        public int AddPatient(T patient) 
         {
             Patients.Add(patient);
             return patient.Id;
@@ -45,11 +45,13 @@ namespace RehaPatient.App.Common
             Patients.Remove(patient);
         }
 
+       
+
         public T GetPatientByPesel(string pesel)
         {
-            var entity = Patients.FirstOrDefault(p=>p.Pesel == pesel);
+            var entity = Patients.FirstOrDefault(p => p.Pesel == pesel);
+            
             return entity;
-
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.Design;
 using RehaPatient;
+using RehaPatient.App.Abstract;
 using RehaPatient.App.Concrete;
 using RehaPatient.App.Manage;
+using RehaPatient.Domain.Entity;
 
 namespace RehaPatient
 {
@@ -13,7 +15,8 @@ namespace RehaPatient
             
             MenuActionService actionService = new MenuActionService();
             PatientService patientService = new PatientService();
-            PatientManager patientManager = new PatientManager(actionService);
+            
+            PatientManager patientManager = new PatientManager(actionService, patientService);
            
             Console.WriteLine("Welcome to the RehaPatient app!");
            

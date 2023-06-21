@@ -18,12 +18,14 @@ namespace RehaPatient.App.Manage
     public class PatientManager
     {
         private readonly MenuActionService _actionService;
-        private PatientService _patientService;
-        
-        public PatientManager(MenuActionService actionService)
+        //private PatientService _patientService;
+        private IService<Patient> _patientService;
+
+
+        public PatientManager(MenuActionService actionService, IService<Patient> patientService)
         {
-            _patientService = new PatientService();
             _actionService = actionService;
+            _patientService = patientService;
         }
         public void AddNewPatient()
         {         
@@ -128,7 +130,7 @@ namespace RehaPatient.App.Manage
 
         public Patient GetPatientByPesel(string pesel)
         {
-            var patient = _patientService.GetPatientByPesel(pesel); 
+            var patient = _patientService.GetPatientByPesel(pesel);
             return patient;
         }
     }

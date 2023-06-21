@@ -12,25 +12,29 @@ namespace RehaPatient.Tests
     public class UnitTest1
     {
         [Fact]
-        public void RemovePatient() //naprawiæ test
+        public void RemovePatient() 
 
         {
             //Arrange
-            Patient patient = new Patient(1, "Damian", "Porêba", "98082411272", "M54");   
-            var mock = new Mock <IService<Patient>>();
+            Patient patient = new Patient(1, "Damian", "Poreba", "98082411272", "M54");
 
-            mock.Setup(s=>s.GetPatientByPesel("98082411272")).Returns(patient);
-            var manager = new PatientManager(new MenuActionService());
+            
+            var mock = new Mock <IService<Patient>>();
+            
+            mock.Setup(s => s.GetPatientByPesel("98082411272")).Returns(patient);
+            var manager = new PatientManager(new MenuActionService(), mock.Object);
+            
 
             //Act
 
-            var returnetPesel = mock.Object.GetPatientByPesel(patient.Pesel);
+            var returnerPesel = manager.GetPatientByPesel(patient.Pesel);
 
             //Assert
 
-            Assert.Equal(patient, returnetPesel);
-
-
+            Assert.Equal(patient, returnerPesel);   
         }
+
+
+       
     }
 }

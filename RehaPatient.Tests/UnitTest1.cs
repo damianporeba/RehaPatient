@@ -42,7 +42,7 @@ namespace RehaPatient.Tests
     public class UnitTest2
     {
         [Fact]
-        public void GetAgeByPesel()
+        public void YearsNow()
         {
             //Arrange
             Patient patient = new Patient(1, "Damian", "Poreba", "98082411272", "M54") { Age = "24.08.1998" };

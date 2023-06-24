@@ -34,23 +34,7 @@ namespace RehaPatient.Tests
             Assert.Equal(patient, returnerPesel);   
         }
 
-        public void AddNewPatient()
-        {
-            //Arrange
-            Patient patient = new Patient(1, "Damian", "Poreba", "98082411272", "M54");
-
-
-            //Act
-
-
-
-            //Assert
-
-
-
-
-
-        }
+        
 
         
     }
@@ -63,16 +47,41 @@ namespace RehaPatient.Tests
             //Arrange
             Patient patient = new Patient(1, "Damian", "Poreba", "98082411272", "M54") { Age = "24.08.1998" };
 
-            var mock = new Mock<IService<Patient>>();
-            mock.Setup(s => s.GetAgeByPesel("98082411272")).Returns(patient.Age);
+            BaseService<Patient> baseService = new BaseService<Patient>();
+
+
 
             //Act
-            var age = mock.Object.GetAgeByPesel(patient.Pesel);
+            var age = baseService.GetAgeByPesel(patient.Pesel);
 
 
             //Assert
 
             Assert.Equal(age, patient.Age);
+
+        }
+    }
+
+    public class UnitTest3
+    {
+        [Fact]
+        public void GetAgeByPesel()
+        {
+            //Arrange
+            Patient patient = new Patient(1, "Damian", "Poreba", "98082411272", "M54") { Age = "24.08.1998", YearsNow = 25 };
+
+            BaseService<Patient> baseService = new BaseService<Patient>();
+
+            //Act
+            var patientYearsNow = baseService.PatientAge(patient.Age);
+
+
+            //Assert
+
+            Assert.Equal(patient.YearsNow, patientYearsNow);
+
+
+
 
         }
     }

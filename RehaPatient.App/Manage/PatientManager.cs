@@ -66,10 +66,9 @@ namespace RehaPatient.App.Manage
 
             _patientService.AddPatient(patient);
         }
-        public void RemovePatient() //wpisujemy pesel pacjenta do skasowania z listy, on jest przekazywany do metody która go wyszukjuje z listy, potem ta zmienna przyjmuje jego wartość i wywoływana jest metoda kasująca go z listy
+        public void RemovePatient(string peselToRemove) //wpisujemy pesel pacjenta do skasowania z listy, on jest przekazywany do metody która go wyszukjuje z listy, potem ta zmienna przyjmuje jego wartość i wywoływana jest metoda kasująca go z listy
         {
-            Console.WriteLine("\n\rPlease, enter a patient's PESEL number who you want to remove from list");
-            string peselToRemove = Console.ReadLine();
+            
 
             var patient = _patientService.GetPatientByPesel(peselToRemove);
             _patientService.RemovePatient(patient);

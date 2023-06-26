@@ -11,7 +11,7 @@ namespace RehaPatient.App.Abstract
         List<T> Patients { get; set; }
 
         List<T> GetAllPatients();
-        int AddPatient (T patient);
+        string AddPatient (T patient);
         int UpdatePatient (T patient);
         void RemovePatient (T patient);
         T GetPatientByPesel (string pesel);

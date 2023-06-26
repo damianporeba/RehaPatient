@@ -38,7 +38,9 @@ namespace RehaPatient
                         break;
 
                     case '2':
-                        patientManager.RemovePatient();
+                        Console.WriteLine("\n\rPlease, enter a patient's PESEL number who you want to remove from list");
+                        string peselToRemove = Console.ReadLine();
+                        patientManager.RemovePatient(peselToRemove);
                         break;
 
                     case '3':

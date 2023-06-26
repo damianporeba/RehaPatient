@@ -24,10 +24,10 @@ namespace RehaPatient.App.Common
             return Patients;
         }
 
-        public int AddPatient(T patient)
+        public string AddPatient(T patient)
         {
             Patients.Add(patient);
-            return patient.Id;
+            return patient.Pesel;
         }
 
         public int UpdatePatient(T patient)

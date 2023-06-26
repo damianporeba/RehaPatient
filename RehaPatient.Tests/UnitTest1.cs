@@ -1,3 +1,4 @@
+using FluentAssertions;
 using Moq;
 using RehaPatient;
 using RehaPatient.App.Abstract;
@@ -5,11 +6,12 @@ using RehaPatient.App.Common;
 using RehaPatient.App.Concrete;
 using RehaPatient.App.Manage;
 using RehaPatient.Domain.Entity;
+using System.Xml.Linq;
 using Xunit;
 
 namespace RehaPatient.Tests
 {
-    public class UnitTest1
+    public class UnitTest1 
     {
         [Fact]
         public void GetPatientByPesel()
@@ -18,20 +20,18 @@ namespace RehaPatient.Tests
             //Arrange
             Patient patient = new Patient(1, "Damian", "Poreba", "98082411272", "M54");
 
-
             var mock = new Mock<IService<Patient>>();
 
             mock.Setup(s => s.GetPatientByPesel("98082411272")).Returns(patient);
             var manager = new PatientManager(new MenuActionService(), mock.Object);
 
-
             //Act
 
-            var returnerPesel = manager.GetPatientByPesel(patient.Pesel);
+            var returnedPesel = manager.GetPatientByPesel(patient.Pesel);
 
             //Assert
 
-            Assert.Equal(patient, returnerPesel);
+            Assert.Equal(patient, returnedPesel);
         }
 
 
@@ -48,8 +48,6 @@ namespace RehaPatient.Tests
             Patient patient = new Patient(1, "Damian", "Poreba", "98082411272", "M54") { Age = "24.08.1998" };
 
             BaseService<Patient> baseService = new BaseService<Patient>();
-
-
 
             //Act
             var age = baseService.GetAgeByPesel(patient.Pesel);
@@ -89,8 +87,20 @@ namespace RehaPatient.Tests
         public void AddPatient()
         {
             //Arrange
+            Patient patient = new Patient(1, "Damian", "Poreba", "98082411272", "M54");
+           
+            BaseService<Patient> baseService = new BaseService<Patient>();
+
+
             //Act
+
+            var returnedPatient = baseService.AddPatient(patient);
+            
+
             //Assert
+            
+            returnedPatient.Should().BeSameAs(patient.Pesel);   
+            
         }
 
 
@@ -102,8 +112,22 @@ namespace RehaPatient.Tests
         public void RemovePatient()
         {
             //Arrange
+
+            Patient patient = new Patient(1, "Damian", "Poreba", "98082411272", "M54");
+            var mock = new Mock<IService<Patient>>();
+
+            mock.Setup(s => s.GetPatientByPesel("98082411272")).Returns(patient);
+            mock.Setup(s => s.RemovePatient(patient));
+
+
+            PatientManager manager = new PatientManager(new MenuActionService(), mock.Object);
+
             //Act
+
+            manager.RemovePatient(patient.Pesel);
             //Assert
+            mock.Verify(s=>s.RemovePatient(patient));
+            
         }
 
 

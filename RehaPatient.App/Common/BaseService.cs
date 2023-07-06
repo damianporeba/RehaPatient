@@ -1,4 +1,5 @@
-﻿using RehaPatient.App.Abstract;
+﻿using Newtonsoft.Json;
+using RehaPatient.App.Abstract;
 using RehaPatient.Domain.Common;
 using RehaPatient.Domain.Entity;
 using System;
@@ -12,21 +13,32 @@ namespace RehaPatient.App.Common
     public class BaseService<T> : IService<T> where T : BaseEntity
 
     {
+        public List<T> patientsMenu { get; set; }   //inicjalizuje listę menu
         public List<T> Patients { get; set; }   //inicjalizuje listę pacjentów
+
 
         public BaseService()  //konstruktor do listy
         {
+            patientsMenu = new List<T>();
             Patients = new List<T>();
         }
 
+        
         public List<T> GetAllPatients()
         {
             return Patients;
         }
 
+
+        
         public string AddPatient(T patient)
         {
             Patients.Add(patient);
+            return patient.Pesel;
+        }
+        public string AddMenu(T patient)
+        {
+            patientsMenu.Add(patient);
             return patient.Pesel;
         }
 
@@ -96,6 +108,10 @@ namespace RehaPatient.App.Common
             return yearsNow;
         }
 
+        public void Document()
+        {
+            
+        }
 
     }
 }

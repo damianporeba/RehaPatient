@@ -51,6 +51,10 @@ namespace RehaPatient
                         patientManager.PatientsListByRehabType();
                         break;
 
+                    case '5':
+                        patientManager.ListFromJSON();
+                        break;
+
                     default:
                         Console.WriteLine("You picked a wrong action, please choose a correct one");
                         break;

@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.FileIO;
+using Newtonsoft.Json;
 using RehaPatient.App.Abstract;
 using RehaPatient.App.Common;
 using RehaPatient.App.Concrete;
@@ -12,6 +13,7 @@ using System.Linq;
 using System.Runtime.Loader;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace RehaPatient.App.Manage
 {
@@ -65,11 +67,17 @@ namespace RehaPatient.App.Manage
 
 
             _patientService.AddPatient(patient);
+
+            using StreamWriter sw = new StreamWriter(@"C:\Temp\patient.txt");
+            using JsonWriter writer = new JsonTextWriter(sw);
+
+            JsonSerializer serializer = new JsonSerializer();
+            serializer.Serialize(writer, _patientService.Patients);
+
         }
         public void RemovePatient(string peselToRemove) //wpisujemy pesel pacjenta do skasowania z listy, on jest przekazywany do metody która go wyszukjuje z listy, potem ta zmienna przyjmuje jego wartość i wywoływana jest metoda kasująca go z listy
         {
-            
-
+           
             var patient = _patientService.GetPatientByPesel(peselToRemove);
             _patientService.RemovePatient(patient);
         }
@@ -125,6 +133,35 @@ namespace RehaPatient.App.Manage
                     
                 }
             }
+        }
+
+        public void ListFromJSON()
+        {
+            using StreamReader sr = new StreamReader(@"C:\Temp\patient.txt");
+            using JsonReader jsonReader = new JsonTextReader(sr);
+            JsonSerializer serializer = new JsonSerializer();
+            List<Patient> list = new List<Patient>();
+
+            list = (List<Patient>)serializer.Deserialize(jsonReader, typeof(List<Patient>));
+
+            //var patientsChain = list.Where(i=>i.Pesel!=null).ToList();  
+
+            for (int i = 0; i<list.Count; i++)
+
+            {
+                if (list[i].RefferalId == 1)
+                {
+                    Console.WriteLine($"\n\rImię: {list[i].Name} \n\rNazwisko: {list[i].Surname} \n\rPESEL: {list[i].Pesel} \n\rData urodzenia: {list[i].Age}\n\rWiek {list[i].YearsNow}lat\n\rICD10: {list[i].Icd} \n\rrehabilitacja stacjonarna \n\rAdres wizyty:" +
+                                            $" {list[i].Adress}");
+                }
+
+                else if (list[i].RefferalId == 2)
+                {
+                    Console.WriteLine($"\n\rImię: {list[i].Name} \n\rNazwisko: {list[i].Surname} \n\rPESEL: {list[i].Pesel} \n\rData urodzenia: {list[i].Age}\n\rWiek {list[i].YearsNow}lat\n\rICD10: {list[i].Icd} \n\rrehabilitacja domowa \n\rAdres wizyty:" +
+                                            $" {list[i].Adress}");
+                }
+            }
+
         }
 
         public Patient GetPatientByPesel(string pesel)
